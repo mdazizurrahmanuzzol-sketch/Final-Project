@@ -74,10 +74,53 @@
     border-radius: 10px;
     margin: 20px;
 }
+
 .post-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+.postInside-header{
     display: flex;
     align-items: center;
     gap: 5px;
+    
+}
+.edit-delete-post-holder{
+
+    display: flex;
+    justify-content: right;
+    gap: 25px;
+    
+}
+#edit-btn{
+    padding: 10px;
+    background-color: rgb(49, 49, 183);
+    color: white;
+    border-radius: 3px;
+    font-size: 13px;
+    border: none;
+
+}
+#edit-btn:hover{
+    background-color: rgb(29, 29, 110);
+    transition: 1s;
+    cursor: pointer;
+}
+#delete-btn{
+    padding: 10px;
+    background-color: rgb(204, 28, 37);
+    color: white;
+    border-radius: 3px;
+    font-size: 13px;
+    border: none;
+}
+#delete-btn:hover{
+    background-color: rgb(112, 6, 6);
+    transition: 1s;
+    cursor: pointer;
     
 }
 .post-user-image img {

@@ -61,14 +61,15 @@ const showAllPosts = (allPosts) => {
 
         postDiv.innerHTML = `
          <div class="post-header">
-                <div class="post-user-image">
+                <div class="postInside-header">
+                    <div class="post-user-image">
                       <img src=${post.postedUserImage}
                       >
                       
 
-                </div>
+                    </div>
 
-                <div class="post-username-time">
+                  <div class="post-username-time">
                     <p class="post-username">${post.postedUserName}</p>
                     <div class="posted-time">
                         <span>${timeDifference(`${post.postedTime}`)}</span>
@@ -76,10 +77,30 @@ const showAllPosts = (allPosts) => {
 
                     </div>
 
+                   </div>
                 </div>
+                  
+                <div class="edit-delete-post-holder">
+                     <div class="edit-btn-holder">
+                          <button id="edit-btn" class="editPost-btn">Edit</button>
+
+                     </div>
+                     <div class="delete-btn-holder">
+                          <button id="delete-btn" class="deletePost-btn">Delete</button>
+
+
+                    </div>
+
+
+                </div>
+
+
+                
+
+            
             
 
-            </div>
+        </div>
 
             <div class="post-text">
                 <p class="post-text-content">
@@ -282,8 +303,10 @@ const showAllPosts = (allPosts) => {
 
     
  };
+ 
 
 // this function automatically runs
 fetchAllPosts();
 checkLoggedInUser();
 showLoggedUsername();
+
