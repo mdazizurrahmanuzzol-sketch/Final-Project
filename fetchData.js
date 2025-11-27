@@ -82,11 +82,13 @@ const showAllPosts = (allPosts) => {
                   
                 <div class="edit-delete-post-holder">
                      <div class="edit-btn-holder">
-                          <button id="edit-btn" class="editPost-btn">Edit</button>
+                          
+                          <button onClick=handleEditPost(${post.postId}) id="edit-btn" class="editPost-btn">Edit</button>
 
                      </div>
                      <div class="delete-btn-holder">
-                          <button id="delete-btn" class="deletePost-btn">Delete</button>
+                        
+                          <button onClick=handleDeletePost(${post.postId}) id="delete-btn" class="deletePost-btn">Delete</button>
 
 
                     </div>
@@ -303,6 +305,44 @@ const showAllPosts = (allPosts) => {
 
     
  };
+
+ 
+const handleEditPost = async (postId) => {
+    const updatedText = prompt("Enter updated post text:");
+
+    if (!updatedText) return;
+
+    try {
+        await fetch(`http://localhost:5000/editPost/${postId}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ postText: updatedText }),
+        });
+
+        location.reload();
+    } catch (err) {
+        console.log("Error editing post:", err);
+    }
+};
+const handleDeletePost = async (postId) => {
+    const confirmDelete = confirm("Are you sure you want to delete this post?");
+
+    if (!confirmDelete) return;
+
+    try {
+        await fetch(`http://localhost:5000/deletePost/${postId}`, {
+            method: "DELETE",
+        });
+
+        location.reload();
+    } catch (err) {
+        console.log("Error deleting post:", err);
+
+    }
+};
+
  
 
 // this function automatically runs
