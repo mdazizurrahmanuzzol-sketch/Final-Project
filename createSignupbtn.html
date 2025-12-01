@@ -43,21 +43,26 @@
 
         <div class="form-group">
             <label for="user-name">User Name:</label>
-            <input type="text" placeholder="Enter your user name" id="user-name">
+            <input type="text" placeholder="Enter your user name" id="name">
         </div>
 
         <div class="form-group">
             <label for="user-id">User ID:</label>
-            <input type="text" id="user-id" placeholder="Enter your user id">
+            <input type="text" id="id" placeholder="Enter your user id">
         </div>
 
         <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" id="password" placeholder="Enter your password">
         </div>
+
+         <div class="form-group">
+            <label for="Image">Image:</label>
+            <input type="text" id="image" placeholder="Enter your ImgeUrl">
+        </div>
             
 
-        <button type="submit" class="submit-btn">Submit</button>
+        <button onclick="handleCreateUser(event)" type="submit" class="submit-btn">Submit</button>
 
         
 
@@ -67,6 +72,6 @@
 <div class="back-to-home-page">
          <a  href="/index.html">   <button id="back-btn">Go Back Home Page</button></a>
     </div>
-    <script src="./create.js"></script>
+    <script src="/create.js"></script>
 </body>
 </html>
