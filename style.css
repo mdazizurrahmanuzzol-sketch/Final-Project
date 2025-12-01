@@ -32,7 +32,36 @@ input[type="password"]{
     border-radius: 10px;
     font-size: 20px;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
+.signup-holder{
+
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    justify-content:center;
+    align-items: center;
+    gap: 5px;
+
+    
+}
+#signup-btn{
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(25, 122, 94)
+    
+    
+
+}
+#signup-btn:hover{
+    background-color: rgb(11, 93, 63);
+    transition: 1s;
+    cursor: pointer;
+    border: none;
+}
+
 .error{
     color: red;
 }

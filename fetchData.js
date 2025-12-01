@@ -307,10 +307,32 @@ const showAllPosts = (allPosts) => {
  };
 
  
+// const handleEditPost = async (postId) => {
+
+//     const updatedText = prompt("Enter updated post text:");
+//     const  updatePhoto = prompt("Enter updated post textcvcv:");
+
+//         if (!updatedText || updatePhoto) return;
+
+//     try {
+//         await fetch(`http://localhost:5000/editPost/${postId}`, {
+//             method: "PUT",
+//             headers: {
+//                 "content-type": "application/json",
+//             },
+//             body: JSON.stringify({ postText: updatedText }),
+//         });
+
+//         location.reload();
+//     } catch (err) {
+//         console.log("Error editing post:", err);
+//     }
+// };
 const handleEditPost = async (postId) => {
     const updatedText = prompt("Enter updated post text:");
+    const updatedPhoto = prompt("Enter updated photo URL:");
 
-    if (!updatedText) return;
+    if (!updatedText || !updatedPhoto) return;
 
     try {
         await fetch(`http://localhost:5000/editPost/${postId}`, {
@@ -318,7 +340,10 @@ const handleEditPost = async (postId) => {
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify({ postText: updatedText }),
+            body: JSON.stringify({ 
+                postText: updatedText,
+                postPhoto: updatedPhoto  
+            }),
         });
 
         location.reload();
@@ -326,22 +351,63 @@ const handleEditPost = async (postId) => {
         console.log("Error editing post:", err);
     }
 };
-const handleDeletePost = async (postId) => {
-    const confirmDelete = confirm("Are you sure you want to delete this post?");
 
-    if (!confirmDelete) return;
+// const handleDeletePost = async (postId) => {
+//     if (!confirm("Are you sure?")) return;
+
+//     try {
+//         const response = await fetch(`http://localhost:5000/deletePost/${postId}`, {
+//             method: "DELETE",
+//         });
+
+//         const data = await response.json();
+
+//         if (response.ok) {
+//             alert("Post deleted!");
+//             location.reload();
+//         } else {
+//             alert(data.error || "Failed to delete post");
+//         }
+//     } catch (error) {
+//         console.error("Delete error:", error);
+//         alert("Server error");
+//     }
+// };
+
+
+// updated delete code
+const handleDeletePost = async (postId) => {
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    if (!user) {
+        alert("You must be logged in!");
+        return;
+    }
+
+    if (!confirm("Are you sure?")) return;
 
     try {
-        await fetch(`http://localhost:5000/deletePost/${postId}`, {
-            method: "DELETE",
-        });
+        const response = await fetch(
+            `http://localhost:5000/deletePost/${postId}/${user.userId}`,
+            {
+                method: "DELETE"
+            }
+        );
 
-        location.reload();
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Post deleted!");
+            location.reload();
+        } else {
+            alert(data.error);
+        }
     } catch (err) {
-        console.log("Error deleting post:", err);
-
+        console.error("Delete error:", err);
+        alert("Server error");
     }
 };
+
 
  
 
